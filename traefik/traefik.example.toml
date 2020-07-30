@@ -1,0 +1,26 @@
+[api]
+  dashboard = true
+
+[ping]
+
+[providers.docker]
+  exposedbydefault = false
+
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+
+    [entryPoints.web.http]
+      [entryPoints.web.http.redirections]
+        [entryPoints.web.http.redirections.entryPoint]
+          to = "websecure"
+          scheme = "https"
+
+  [entryPoints.websecure]
+    address = ":443"
+
+
+[certificatesresolvers.myresolver.acme]
+  tlschallenge = true
+  email = "w@shoujo.network"
+  storage = "/letsencrypt/acme.json"
