@@ -8,7 +8,7 @@
 
 [providers]
   [providers.docker]
-    exposedbydefault = "false"
+    exposedbydefault = true
   [providers.file]
     directory = "/etc/traefik/conf"
 

@@ -15,11 +15,9 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     restart: always
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.dashboard.rule=Host(`jp2.node.shoujo.network`)"
+      - "traefik.http.routers.dashboard.rule=Host(`asuka.ap.shoujo.network`)"
       - "traefik.http.routers.dashboard.service=api@internal"
-      - "traefik.http.routers.dashboard.middlewares=basic-auth@file"
+      - "traefik.http.routers.dashboard.middlewares=basic-auth@file,global-compress@file"
       - "traefik.http.routers.dashboard.entrypoints=websecure"
       - "traefik.http.routers.dashboard.tls.certresolver=myresolver"
-      - "traefik.http.middlewares.compress.compress=true"
       
