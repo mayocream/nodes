@@ -1,0 +1,8 @@
+[http.middlewares]
+  
+  [http.middlewares.global-compress.compress]
+
+  [http.middlewares.basic-auth.basicAuth]
+    users = [
+      "mayocream:$apr1$vfoxc7ia$zQlNYp2eb/f/kJprdhm/n1"
+    ]

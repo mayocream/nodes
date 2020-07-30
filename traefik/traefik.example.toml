@@ -1,10 +1,16 @@
 [api]
   dashboard = true
-
+  insecure = true
 [ping]
 
-[providers.docker]
-  exposedbydefault = false
+[log]
+  level = "INFO"
+
+[providers]
+  [providers.docker]
+    exposedbydefault = "false"
+  [providers.file]
+    directory = "/etc/traefik/conf"
 
 [entryPoints]
   [entryPoints.web]
@@ -20,7 +26,7 @@
     address = ":443"
 
 
-[certificatesresolvers.myresolver.acme]
-  tlschallenge = true
+[certificatesResolvers.myresolver.acme]
   email = "w@shoujo.network"
   storage = "/letsencrypt/acme.json"
+  [certificatesResolvers.myresolver.acme.tlsChallenge]
