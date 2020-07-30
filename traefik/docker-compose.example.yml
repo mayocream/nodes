@@ -18,6 +18,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     restart: always
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.dashboard.rule=Host(`asuka-ap.shoujo.network`)"
       - "traefik.http.routers.dashboard.service=api@internal"
       - "traefik.http.routers.dashboard.middlewares=basic-auth@file,global-compress@file"
