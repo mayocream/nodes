@@ -29,4 +29,6 @@
 [certificatesResolvers.myresolver.acme]
   email = "w@shoujo.network"
   storage = "/letsencrypt/acme.json"
-  [certificatesResolvers.myresolver.acme.tlsChallenge]
+  [certificatesResolvers.myresolver.acme.dnsChallenge]
+    provider = "cloudflare"
+    delayBeforeCheck = 0

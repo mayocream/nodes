@@ -9,13 +9,16 @@ services:
       - "80:80"
       - "443:443"
       - "8080:8080"
+    environment: 
+      CF_DNS_API_TOKEN: dYs10KtsAakhTeHlNB9rpJ7b0NBF6skKqYdpwxAZ
     volumes:
       - "./traefik.toml:/etc/traefik/traefik.toml"
+      - "./conf:/etc/traefik/conf"
       - "./letsencrypt:/letsencrypt"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     restart: always
     labels:
-      - "traefik.http.routers.dashboard.rule=Host(`asuka.ap.shoujo.network`)"
+      - "traefik.http.routers.dashboard.rule=Host(`asuka-ap.shoujo.network`)"
       - "traefik.http.routers.dashboard.service=api@internal"
       - "traefik.http.routers.dashboard.middlewares=basic-auth@file,global-compress@file"
       - "traefik.http.routers.dashboard.entrypoints=websecure"
