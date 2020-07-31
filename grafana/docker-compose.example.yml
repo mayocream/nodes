@@ -13,11 +13,11 @@ services:
       - traefik_net
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.portainer.rule=Host(`${HOST}`)"
-      - "traefik.http.routers.portainer.middlewares=global-compress@file"
-      - "traefik.http.routers.portainer.entrypoints=websecure"
-      - "traefik.http.routers.portainer.tls=true"
-      - "traefik.http.routers.portainer.tls.certresolver=myresolver"
+      - "traefik.http.routers.grafana.rule=Host(`${HOST}`)"
+      - "traefik.http.routers.grafana.middlewares=global-compress@file"
+      - "traefik.http.routers.grafana.entrypoints=websecure"
+      - "traefik.http.routers.grafana.tls=true"
+      - "traefik.http.routers.grafana.tls.certresolver=myresolver"
 
 volumes:
   grafana_data:
