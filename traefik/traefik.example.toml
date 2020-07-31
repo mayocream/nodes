@@ -1,6 +1,6 @@
-#[api]
-  #dashboard = true
-  #insecure = true
+[api]
+  dashboard = true
+  insecure = false
 [ping]
 
 [log]
@@ -8,7 +8,7 @@
 
 [providers]
   [providers.docker]
-    exposedbydefault = true
+    exposedbydefault = false
   [providers.file]
     directory = "/etc/traefik/conf"
 
@@ -29,6 +29,9 @@
 [certificatesResolvers.myresolver.acme]
   email = "w@shoujo.network"
   storage = "/letsencrypt/acme.json"
+  [certificatesResolvers.myresolver.acme.httpChallenge]
+    entryPoint = "web"
+  [certificatesResolvers.myresolver.acme.tlsChallenge]
   [certificatesResolvers.myresolver.acme.dnsChallenge]
     provider = "cloudflare"
     delayBeforeCheck = 0
