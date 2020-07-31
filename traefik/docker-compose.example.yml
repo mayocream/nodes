@@ -14,6 +14,8 @@ services:
       - "./conf:/etc/traefik/conf"
       - "letsencrypt_data:/letsencrypt"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - traefik_net
     restart: always
     labels:
       - "traefik.enable=true"
@@ -29,4 +31,3 @@ volumes:
 networks:
   traefik_net:
     external: true
-    name: traefik_net

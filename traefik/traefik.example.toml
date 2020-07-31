@@ -9,6 +9,7 @@
 [providers]
   [providers.docker]
     exposedbydefault = false
+    network = "traefik_net"
   [providers.file]
     directory = "/etc/traefik/conf"
 
