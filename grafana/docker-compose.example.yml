@@ -11,6 +11,7 @@ services:
     restart: always
     networks:
       - traefik_net
+      - grafana_internal
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.grafana.rule=Host(`${HOST}`)"
@@ -24,4 +25,6 @@ volumes:
 
 networks:
   traefik_net:
+    external: true
+  grafana_internal:
     external: true

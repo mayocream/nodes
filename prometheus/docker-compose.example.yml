@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+
+    prometheus:
+    image: "prom/prometheus:latest"
+    container_name: "prometheus"
+    volumes:
+      - "./prometheus.yml:/etc/prometheus/prometheus.yml"
+    restart: always
+    networks:
+      - grafana_internal
+      - prometheus_internal
+
+networks:
+  grafana_internal:
+    external: true
+  prometheus_internal:
+    external: true
