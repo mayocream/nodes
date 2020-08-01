@@ -6,9 +6,16 @@ services:
     image: "prom/node-exporter:latest"
     container_name: "node-exporter"
     command: 
-      - "--web.config=\"web-config.yml\""
+      - "--web.config=web-config.yml"
+      - "--path.procfs=/host/proc"
+      - "--path.sysfs=/host/sys"
+      - "--collector.filesystem.ignored-mount-points"
+      - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
     volumes:
       - "./web-config.yml:./web-config.yml"
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
     restart: always
     networks:
       - prometheus_internal
