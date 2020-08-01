@@ -193,6 +193,13 @@ services:
       - relay
     networks:
       - traefik_net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sentry.rule=Host(`${SENTRY_HOST}`)"
+      - "traefik.http.routers.sentry.middlewares=global-compress@file"
+      - "traefik.http.routers.sentry.entrypoints=websecure"
+      - "traefik.http.routers.sentry.tls=true"
+      - "traefik.http.routers.sentry.tls.certresolver=myresolver"
 
   relay:
     << : *restart_policy
@@ -226,3 +233,7 @@ volumes:
   sentry-kafka-log:
   sentry-smtp-log:
   sentry-clickhouse-log:
+
+networks: 
+  traefik_net:
+    external:
