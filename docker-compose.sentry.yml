@@ -192,6 +192,7 @@ services:
       - web
       - relay
     networks:
+      - default
       - traefik_net
     labels:
       - "traefik.enable=true"
