@@ -7,9 +7,18 @@ services:
     command: -config.file=/etc/loki/config.yaml
     volumes:
       - ./loki-config.yml:/etc/loki/config.yaml
+      - loki_data:/loki
     networks:
       - loki_internal
       - grafana_internal
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.loki.rule=Host(`${LOKI_HOST}`)"
+      - "traefik.http.routers.loki.middlewares=global-compress@file,loki-auth"
+      - "traefik.http.routers.loki.entrypoints=websecure"
+      - "traefik.http.routers.loki.tls=true"
+      - "traefik.http.routers.loki.tls.certresolver=myresolver"
+      - "traefik.http.middlewares.loki-auth.basicauth.users=${LOKI_USERS}"
 
   promtail:
     image: grafana/promtail:latest
@@ -19,6 +28,9 @@ services:
       - /var/log:/var/log
     networks:
       - loki_internal
+
+volumes: 
+  loki_data:
 
 networks:
   loki_internal:
