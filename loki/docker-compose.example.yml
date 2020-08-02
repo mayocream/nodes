@@ -12,6 +12,7 @@ services:
       - traefik_net
       - loki_internal
       - grafana_internal
+    restart: always
     labels: 
       - "traefik.enable=true"
       - "traefik.http.routers.loki.rule=Host(`${LOKI_HOST}`)"
@@ -27,6 +28,7 @@ services:
     volumes:
       - ./promtail-config.yml:/etc/promtail/config.yaml
       - /var/log:/var/log
+    restart: always
     networks:
       - loki_internal
 
