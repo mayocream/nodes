@@ -9,6 +9,7 @@ services:
       - ./loki-config.yml:/etc/loki/config.yaml
       - loki_data:/loki
     networks:
+      - traefik_net
       - loki_internal
       - grafana_internal
     labels: 
@@ -33,6 +34,8 @@ volumes:
   loki_data:
 
 networks:
+  traefik_net:
+    external: true
   loki_internal:
     external: true
   grafana_internal:
